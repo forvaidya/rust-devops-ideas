@@ -4,4 +4,6 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-neomath = { path = "../neomath" }
+# Points to neomath-lib (separate repo)
+# Uses pre-built binaries fetched via: ./fetch-from-dist.sh
+neomath = { path = "../../neomath-lib" }

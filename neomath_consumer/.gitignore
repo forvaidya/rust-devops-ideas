@@ -1,0 +1,20 @@
+# Rust
+/target/
+Cargo.lock
+**/*.rs.bk
+
+# Distribution cache (fetched from server)
+.neomath_dist/
+.cargo/config.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Distribution cache
+.neomath_dist/
+.cargo/config.toml
