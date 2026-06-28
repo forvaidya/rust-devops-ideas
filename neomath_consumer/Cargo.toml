@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# Points to neomath-lib (separate repo)
-# Uses pre-built binaries fetched via: ./fetch-from-dist.sh
-neomath = { path = "../../neomath-lib" }
+# Usage: ./fetch-from-dist.sh file://../external-libs/neomath-ready-crates
+# This downloads pre-built binaries and configures .cargo/config.toml
+# The path points to neomath-lib (for cargo metadata), but uses pre-built .rlib via rustflags
+neomath = { path = "/Users/maheshvaidya/neomath-lib" }

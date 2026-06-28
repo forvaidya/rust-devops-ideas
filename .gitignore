@@ -10,3 +10,6 @@ Cargo.lock
 *.swo
 *~
 .DS_Store
+
+# External library artifacts (fetched from distribution server)
+external-libs/
