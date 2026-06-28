@@ -22,11 +22,18 @@ neomath-lib/
 ```
 neomath_consumer/
 ├── src/main.rs
-├── Cargo.toml          # path = "neomath-lib" for metadata only
-├── fetch-from-dist.sh  # Download binaries from distribution URL
-├── super-libs/         # Distribution folder (gitignored, flexible naming)
+├── Cargo.toml          # References neomath-lib for metadata only
+├── fetch-from-dist.sh  # Download binaries into ./super-libs/
+├── super-libs/         # Pre-built binaries (fetched, gitignored)
+│   └── neomath-ready-crates/
+│       ├── arm64/
+│       └── intel/
+├── .cargo/
+│   └── config.toml     # Rustflags point to ./super-libs/
 └── .gitignore
 ```
+
+**Key**: Consumer does NOT build from source. Rustflags redirect to fetched binaries.
 
 ## Error Handling
 
@@ -96,6 +103,36 @@ cd neomath_consumer
 cargo run
 ```
 
+## Workspace Structure (Convention)
+
+**Fixed location** — all projects must follow this structure:
+
+```
+/Users/maheshvaidya/__STUDY__/Rust/
+├── neomath-lib/              # Library source (authoritative)
+│   ├── src/
+│   ├── Cargo.toml
+│   ├── distribute.sh
+│   └── _dist/                # (local build output, not shipped)
+│
+└── neomath_consumer/         # Consumer application
+    ├── src/
+    ├── Cargo.toml
+    ├── super-libs/           # Distribution (fetched, any name OK)
+    └── fetch-from-dist.sh
+```
+
+**Why convention:**
+- No path configuration needed in Cargo.toml
+- All team members know exactly where everything is
+- CI/CD pipelines work without setup
+- No confusion: "where did they put the library?"
+
+**Relative path in Cargo.toml** (works everywhere):
+```toml
+neomath = { path = "../neomath-lib" }
+```
+
 ## Key Decisions
 
 - **rlib format**: Best for Rust-to-Rust consumption, source-free distribution
@@ -103,3 +140,4 @@ cargo run
 - **Module separation**: Keeps lib.rs simple, groups related functions
 - **Examples in project**: Distributed with library, demonstrates API to consumers
 - **Separate Cargo homes**: Test isolation via `CARGO_HOME=~/.trial1` pattern
+- **Fixed workspace layout**: Convention over configuration — everyone knows the structure
