@@ -3,7 +3,8 @@
 Cargo.lock
 **/*.rs.bk
 
-# Distribution cache (fetched from server)
+# Distribution & cache (internal, not tracked)
+super-libs/
 .neomath_dist/
 .cargo/config.toml
 
@@ -14,11 +15,3 @@ Cargo.lock
 *.swo
 *~
 .DS_Store
-
-# Distribution cache
-.neomath_dist/
-.cargo/config.toml
-/target/
-Cargo.lock
-.cargo/config.toml
-.neomath_dist/
