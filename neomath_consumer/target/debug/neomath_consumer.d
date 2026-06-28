@@ -1,0 +1,1 @@
+/Users/maheshvaidya/__STUDY__/Rust/neomath_consumer/target/debug/neomath_consumer: /Users/maheshvaidya/__STUDY__/Rust/neomath/src/arithmetic.rs /Users/maheshvaidya/__STUDY__/Rust/neomath/src/lib.rs /Users/maheshvaidya/__STUDY__/Rust/neomath_consumer/src/main.rs
