@@ -1,0 +1,7 @@
+[package]
+name = "neomath"
+version = "0.1.0"
+edition = "2021"
+description = "Learning crate for arithmetic operations"
+
+[dependencies]
