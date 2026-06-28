@@ -517,13 +517,52 @@ cargo build  # Uses updated binaries
 
 ---
 
+## ⚠️ CAUTION: Internal Crates Should Use Full Builds
+
+**For internal teams developing together, full source builds are superior:**
+
+### When to use Pre-Compiled Binaries (Binary Distribution)
+- **External distribution** → Third-party consumers, partners, vendors
+- **Source confidentiality required** → Proprietary code, trade secrets
+- **Distribution-only teams** → No development access needed
+- **Fast CI/CD** → Pre-compiled artifacts, minimal compile time
+
+### When to use Full Source Builds (Recommended for Internal)
+- **Internal development** → Multiple teams working on same codebase ✓
+- **Debugging** → Need to step through library source code
+- **Modifications** → Bug fixes, features in library, test changes
+- **Verification** → Audit build process, ensure source matches binaries
+- **Cargo workspace** → Natural Rust multi-crate development pattern
+
+**Internal Development Pattern:**
+```bash
+# Better for internal teams
+[dependencies]
+neomath = { path = "../neomath-lib" }  # Source access
+# OR
+[workspace]
+members = ["neomath-lib", "neomath-consumer"]
+```
+
+**External Distribution Pattern:**
+```bash
+# Use pre-compiled binaries for external consumers
+./fetch-from-dist.sh https://releases.company.com/neomath/
+```
+
+**Recommendation:**
+- **Within company**: Use source builds (cargo workspace)
+- **Outside company**: Use binary distribution (pre-compiled)
+- **Airgap requirement**: Use binary distribution + crates mirror
+
 ## Key Takeaways
 
-✓ **Binary Distribution** → Pre-compiled binaries, source confidential, fast builds  
+✓ **Binary Distribution** → Pre-compiled binaries for external distribution, source confidential, fast builds  
 ✓ **Crates Mirror** → Local copy of dependencies, offline builds  
 ✓ **Combined** → Complete airgap with zero external access  
 ✓ **Scalable** → Works for 1 team or 1000 teams  
 ✓ **Enterprise-ready** → Security, offline, controlled distribution  
+⚠️ **Internal teams** → Use full source builds + workspace (better for development)  
 
 This model powers enterprise Rust deployments in:
 - Classified/secure networks
