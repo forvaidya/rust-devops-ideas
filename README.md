@@ -1,6 +1,8 @@
 # Rust DevOps Ideas: Binary Distribution & Airgapped Builds
 
-A production-grade reference implementation for building, distributing, and consuming Rust libraries with source-free binary delivery and offline dependency management.
+A production-grade **reference implementation** and **POC** (Proof of Concept) for building, distributing, and consuming Rust libraries with source-free binary delivery and offline dependency management.
+
+> **⚠️ For Real Commercial Projects:** Use enterprise solutions like [JFrog Artifactory](https://jfrog.com/learn/devops/how-to-run-a-private-cargo-registry/) for production Rust registry management. This POC demonstrates the concepts; production deployments require professional artifact management with access control, audit logs, replication, and SLAs.
 
 ## Objective
 
@@ -42,6 +44,38 @@ Learn and demonstrate **enterprise Rust crate management** by:
 - ✓ Relative paths for portability
 - ✓ Convention over configuration
 - ✓ Clear team boundaries (library team ≠ consumer team)
+
+---
+
+## POC vs Production
+
+### This Project (POC — Learning/Reference)
+- ✓ Demonstrates concepts and patterns
+- ✓ Manual distribution via HTTP/S3
+- ✓ Simple bash scripts for build/fetch
+- ✓ No access control or audit logs
+- ✓ Educational, open-source implementation
+- ✓ Suitable for: learning, prototyping, small internal teams
+
+### Production (Commercial Projects)
+- Use [JFrog Artifactory](https://jfrog.com/learn/devops/how-to-run-a-private-cargo-registry/)
+- ✓ Enterprise-grade artifact management
+- ✓ Role-based access control (RBAC)
+- ✓ Audit logs and compliance reporting
+- ✓ Automatic replication and backup
+- ✓ SLA and commercial support
+- ✓ Suitable for: enterprise deployments, regulated industries, multi-team organizations
+
+**Key Differences:**
+| Aspect | This POC | JFrog Artifactory |
+|--------|----------|-------------------|
+| **Access Control** | File system permissions | Role-based (fine-grained) |
+| **Audit Logs** | Manual tracking | Automatic, compliant |
+| **Replication** | Manual copy | Automatic, scheduled |
+| **Backup** | Manual backups | Built-in replication |
+| **UI/API** | Bash scripts | Web UI + REST API |
+| **Support** | Community | 24/7 Commercial Support |
+| **Compliance** | Manual checks | SOC2, HIPAA, FedRAMP ready |
 
 ---
 
@@ -187,13 +221,19 @@ Airgapped Networks (NO internet)
 
 ### Enterprise Readiness
 
-This model is production-ready for:
-- **Classified/Secure Networks** — Airgapped systems with zero external access
-- **Internal Distribution** — Private libraries across teams
-- **IP Protection** — Proprietary code distribution without source leakage
-- **Regulated Environments** — Healthcare, finance, government (HIPAA, SOX, FedRAMP)
-- **Supply Chain Security** — Verified, reproducible builds
-- **Multi-Team Coordination** — Separate development lifecycles
+**This POC demonstrates the architecture for:**
+- Classified/Secure Networks — Airgapped systems with zero external access
+- Internal Distribution — Private libraries across teams
+- IP Protection — Proprietary code distribution without source leakage
+- Supply Chain Security — Verified, reproducible builds
+- Multi-Team Coordination — Separate development lifecycles
+
+**For production deployments in regulated environments** (Healthcare HIPAA, Finance SOX, Government FedRAMP), integrate with:
+- **[JFrog Artifactory](https://jfrog.com/learn/devops/how-to-run-a-private-cargo-registry/)** — Enterprise Rust registry with compliance certifications
+- **Sonatype Nexus** — Alternative enterprise artifact manager
+- **Internal registry per [Cargo Registry Specification](https://doc.rust-lang.org/cargo/reference/registries.html)** — If building custom solutions
+
+This POC provides the conceptual foundation; production requires enterprise tooling for security, audit, and compliance.
 
 ---
 
