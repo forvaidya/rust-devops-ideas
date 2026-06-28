@@ -24,7 +24,7 @@ else
     TRIPLE="x86_64-apple-darwin"
 fi
 
-DIST_DIR="./.neomath_dist/$PLATFORM"
+DIST_DIR="./super-libs/neomath-ready-crates/$PLATFORM"
 
 echo "Fetching neomath from: $DIST_URL/$PLATFORM"
 echo "Platform: $PLATFORM ($TRIPLE)"
