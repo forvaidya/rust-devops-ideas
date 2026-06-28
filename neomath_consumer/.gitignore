@@ -18,3 +18,7 @@ Cargo.lock
 # Distribution cache
 .neomath_dist/
 .cargo/config.toml
+/target/
+Cargo.lock
+.cargo/config.toml
+.neomath_dist/
