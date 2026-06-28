@@ -222,13 +222,15 @@ cargo build
 
 For enterprise environments:
 
-**Artifactory (JFrog)**
+**Artifactory (JFrog)** — Commercial, Production-Grade
 ```
 https://dist.company.com/artifactory/api/cargo/crates-io
 ```
 - Automatic sync from crates.io
 - Access control, audit logs
 - Single URL for all consumers
+- Supports binary distribution + crates mirror
+- Official Rust support: https://jfrog.com/learn/devops/how-to-run-a-private-cargo-registry/
 
 **Nexus Repository**
 ```
